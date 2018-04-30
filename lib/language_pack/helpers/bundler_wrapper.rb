@@ -102,6 +102,7 @@ class LanguagePack::Helpers::BundlerWrapper
       if output.match(/No ruby version specified/)
         ""
       else
+        output = output.lines.select { |line| /\A\w+ \d+\.\d+\.\d+/.match(line) }.join
         output.chomp.sub('(', '').sub(')', '').sub(/(p-?\d+)/, ' \1').split.join('-')
       end
     end
